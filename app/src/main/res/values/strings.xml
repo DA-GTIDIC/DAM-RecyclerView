@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">DAM-RecyclerView</string>
+    <string name="event_user_id">event_user_id</string>
+    <string name="search">search</string>
+    <string name="my_events">My Events</string>
+    <string name="_new">new</string>
+    <string name="course_logo">course logo</string>
+    <string name="this_is_the_event_photo">This is the event photo</string>
 </resources>
