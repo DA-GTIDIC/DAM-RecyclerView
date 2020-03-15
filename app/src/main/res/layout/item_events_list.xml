@@ -3,15 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <import type="android.view.View"/>
-
-        <variable
-                name="Event"
-                type="cat.udl.tidic.amd.dam_recyclerview.models.Event"/>
-
-    </data>
 
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -42,7 +33,6 @@
                 android:layout_width="268dp"
                 android:layout_height="21dp"
                 android:maxLines="1"
-                android:text="@{Event.getTittle()}"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +46,6 @@
                 android:layout_height="17dp"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="@{Event.getDescription()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -76,7 +65,7 @@
                 app:layout_constraintTop_toBottomOf="@id/description" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/removeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -16,11 +16,11 @@ import cat.udl.tidic.amd.dam_recyclerview.repositories.EventRepoImpl;
 public class EventViewModel extends AndroidViewModel {
 
     private EventRepoI repository;
-    private MutableLiveData<List<Event>> events;
+    private LiveData<List<Event>> events;
 
     public EventViewModel(@NonNull Application application) {
         super(application);
-        repository = new EventRepoImpl();
+        repository = new EventRepoImpl(application);
         events = repository.getEvents();
     }
 
@@ -32,7 +32,15 @@ public class EventViewModel extends AndroidViewModel {
         this.events = this.repository.getEvents();
     }
 
-    public MutableLiveData<List<Event>> getEvents() {
+    public LiveData<List<Event>> getEvents() {
         return this.events;
+    }
+
+    public void insert(){
+        this.repository.insert(null);
+    }
+
+    public void removeEvent(Event event){
+        this.repository.delete(event);
     }
 }

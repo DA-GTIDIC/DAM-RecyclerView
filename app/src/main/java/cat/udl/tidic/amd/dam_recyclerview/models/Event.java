@@ -1,32 +1,28 @@
 package cat.udl.tidic.amd.dam_recyclerview.models;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
+@Entity(tableName = "event_table")
 public class Event {
 
-    @SerializedName("id")
+    @PrimaryKey(autoGenerate = true)
     private int id;
-    @SerializedName("userId")
+
     private int userId;
-    @SerializedName("start")
     private String start;
-    @SerializedName("end")
     private String end;
-    @SerializedName("tittle")
     private String tittle;
-    @SerializedName("description")
     private String description;
-    @SerializedName("avaluation")
     private int avaluation;
 
-    public Event() {
-    }
 
-    public Event(int id, int userId, String start, String end, String tittle, String description,
+    public Event(int userId, String start, String end, String tittle, String description,
     int avaluation) {
-        this.id = id;
         this.userId = userId;
         this.start = start;
         this.end = end;

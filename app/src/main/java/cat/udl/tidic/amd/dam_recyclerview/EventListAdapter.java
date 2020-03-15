@@ -1,7 +1,9 @@
 package cat.udl.tidic.amd.dam_recyclerview;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -16,9 +18,12 @@ import cat.udl.tidic.amd.dam_recyclerview.models.Event;
 
 public final class EventListAdapter extends ListAdapter {
 
+    private AdapterView.OnItemClickListener listener;
 
-    protected EventListAdapter(@NonNull DiffUtil.ItemCallback diffCallback) {
+    protected EventListAdapter(@NonNull DiffUtil.ItemCallback diffCallback,
+                               AdapterView.OnItemClickListener listener) {
         super(diffCallback);
+        this.listener = listener;
     }
 
     @NonNull
@@ -28,7 +33,7 @@ public final class EventListAdapter extends ListAdapter {
                         R.layout.item_events_list, parent, false);
 
         ItemEventsListBinding bind = (ItemEventsListBinding) viewDataBinding;
-        return new EventListAdapter.DataHolder(bind);
+        return new EventListAdapter.EventHolder(bind);
     }
 
 
@@ -36,19 +41,28 @@ public final class EventListAdapter extends ListAdapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Event e = (Event) this.getItem(position);
         if (e != null) {
-            ((DataHolder) holder).bind(e);
+            ((EventHolder) holder).bind(e);
         }
+
+
+        holder.itemView.findViewById(R.id.removeButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
-    public final class DataHolder extends RecyclerView.ViewHolder {
+
+    public final class EventHolder extends RecyclerView.ViewHolder {
         private ItemEventsListBinding itemEventsBinding;
 
         public final void bind(Event eventItem) {
-            this.itemEventsBinding.setEvent(eventItem);
+            //this.itemEventsBinding.setEvent(eventItem);
             this.itemEventsBinding.executePendingBindings();
         }
 
-        public DataHolder(ItemEventsListBinding itemEventsBinding) {
+        public EventHolder(ItemEventsListBinding itemEventsBinding) {
             super(itemEventsBinding.getRoot());
             this.itemEventsBinding = itemEventsBinding;
         }
