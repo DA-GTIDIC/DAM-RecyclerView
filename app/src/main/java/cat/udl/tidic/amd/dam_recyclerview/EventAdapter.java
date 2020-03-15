@@ -45,12 +45,6 @@ public class EventAdapter  extends ListAdapter<Event, EventAdapter.EventHolder> 
         Event currentEvent = getItem(position);
         holder.textViewTitle.setText(currentEvent.getTittle());
         holder.textViewDescription.setText(currentEvent.getDescription());
-        holder.imageButtonRemove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         holder.ratingAvaluation.setRating(currentEvent.getAvaluation());
     }
 
@@ -74,7 +68,6 @@ public class EventAdapter  extends ListAdapter<Event, EventAdapter.EventHolder> 
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.tittle);
             textViewDescription = itemView.findViewById(R.id.description);
-            imageButtonRemove = itemView.findViewById(R.id.removeButton);
             ratingAvaluation = itemView.findViewById(R.id.avaluation);
 
             itemView.setOnClickListener(new View.OnClickListener() {

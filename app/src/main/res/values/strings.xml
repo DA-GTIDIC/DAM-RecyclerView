@@ -6,4 +6,9 @@
     <string name="_new">new</string>
     <string name="course_logo">course logo</string>
     <string name="this_is_the_event_photo">This is the event photo</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
+    <string name="save">Save</string>
 </resources>

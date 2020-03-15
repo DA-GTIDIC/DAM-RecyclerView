@@ -44,13 +44,6 @@ public final class EventListAdapter extends ListAdapter {
             ((EventHolder) holder).bind(e);
         }
 
-
-        holder.itemView.findViewById(R.id.removeButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
 

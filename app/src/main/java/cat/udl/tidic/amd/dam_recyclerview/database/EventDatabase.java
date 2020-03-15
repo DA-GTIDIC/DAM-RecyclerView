@@ -49,18 +49,18 @@ public abstract class EventDatabase extends RoomDatabase {
         protected Void doInBackground(Void... voids) {
 
             Event e1 = new Event (1, "20/01/2020", "22/01/2020",
-                    "Event 0", "Wow this is event 0",3);
+                    "Event 0", "Wow this is event 0", (float) 3.0);
 
             Event e2 = new Event(1, "21/01/2020", "22/01/2020",
-                    "Event 1", "Wow this is event 1",4);
+                    "Event 1", "Wow this is event 1",(float) 4.0);
             Event e3 = new Event( 1, "22/01/2020", "24/01/2020",
-                    "Event 2", "Wow this is event 2",1);
+                    "Event 2", "Wow this is event 2",(float) 1.0);
             Event e4 = new Event(1, "23/01/2020", "25/01/2020",
-                    "Event 3", "Wow this is event 3",2);
+                    "Event 3", "Wow this is event 3",(float) 2.0);
             Event e5 = new Event( 2, "20/01/2020", "22/01/2020",
-                    "Event 4", "Wow this is event 4",4);
+                    "Event 4", "Wow this is event 4",(float) 4.0);
             Event e6 = new Event(2, "21/01/2020", "22/01/2020",
-                    "Event 5", "Wow this is event 5",5);
+                    "Event 5", "Wow this is event 5",(float) 5.0);
 
             eventDAO.insert(e1);
             eventDAO.insert(e2);

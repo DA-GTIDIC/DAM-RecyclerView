@@ -26,7 +26,7 @@ public class EventRepoImpl implements EventRepoI {
 
     @Override
     public void insert(Event event) {
-        eventDAO.insert(event);
+        new InsertNoteAsyncTask(eventDAO).execute(event);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class EventRepoImpl implements EventRepoI {
 
     @Override
     public void update(Event event) {
-        eventDAO.update(event);
+        new UpdateNoteAsyncTask(eventDAO).execute(event);
     }
 
     @Override
@@ -72,6 +72,34 @@ public class EventRepoImpl implements EventRepoI {
         @Override
         protected Void doInBackground(Event... events) {
             eventDAO.delete(events[0]);
+            return null;
+        }
+    }
+
+    private static class UpdateNoteAsyncTask extends AsyncTask<Event, Void, Void> {
+        private EventDAOI eventDAO;
+
+        private UpdateNoteAsyncTask(EventDAOI eventDAO) {
+            this.eventDAO = eventDAO;
+        }
+
+        @Override
+        protected Void doInBackground(Event... event) {
+            eventDAO.update(event[0]);
+            return null;
+        }
+    }
+
+    private static class InsertNoteAsyncTask extends AsyncTask<Event, Void, Void> {
+        private EventDAOI eventDAO;
+
+        private InsertNoteAsyncTask(EventDAOI eventDAO) {
+            this.eventDAO = eventDAO;
+        }
+
+        @Override
+        protected Void doInBackground(Event... event) {
+            eventDAO.insert(event[0]);
             return null;
         }
     }

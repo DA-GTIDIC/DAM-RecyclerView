@@ -18,11 +18,11 @@ public class Event {
     private String end;
     private String tittle;
     private String description;
-    private int avaluation;
+    private float avaluation;
 
 
     public Event(int userId, String start, String end, String tittle, String description,
-    int avaluation) {
+    float avaluation) {
         this.userId = userId;
         this.start = start;
         this.end = end;
@@ -79,7 +79,7 @@ public class Event {
         this.description = description;
     }
 
-    public int getAvaluation() {
+    public float getAvaluation() {
         return avaluation;
     }
 

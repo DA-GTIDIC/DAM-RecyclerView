@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".EventsListActivity">
 
-
     <androidx.appcompat.widget.AppCompatAutoCompleteTextView
         android:id="@+id/activityMainAtcEventUserId"
         android:layout_width="229dp"
@@ -36,12 +35,12 @@
         android:id="@+id/imageView"
         android:layout_width="138dp"
         android:layout_height="99dp"
+        android:contentDescription="@string/course_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_course_logo_foreground"
-        android:contentDescription="@string/course_logo" />
+        app:srcCompat="@mipmap/ic_course_logo_foreground" />
 
     <TextView
         android:id="@+id/screen_tittle"
@@ -60,26 +59,25 @@
         android:layout_width="47dp"
         android:layout_height="46dp"
         android:layout_marginTop="24dp"
+        android:contentDescription="@string/search"
         app:layout_constraintBottom_toBottomOf="@+id/activityMainAtcEventUserId"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/activityMainAtcEventUserId"
         app:layout_constraintTop_toBottomOf="@+id/screen_tittle"
         app:layout_constraintVertical_bias="0.25"
-        app:srcCompat="@android:drawable/ic_search_category_default"
-        android:contentDescription="@string/search" />
+        app:srcCompat="@android:drawable/ic_search_category_default" />
 
     <ImageButton
-        android:id="@+id/createButton"
+        android:id="@+id/createEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/activityMainRcyMain"
         app:layout_constraintEnd_toStartOf="@+id/activityMainAtcEventUserId"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="0.222"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/activityMainAtcEventUserId"
-        app:srcCompat="@android:drawable/ic_input_add"
-        android:contentDescription="@string/_new" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:src="@drawable/ic_add" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
