@@ -1,11 +1,14 @@
 package cat.udl.tidic.amd.dam_recyclerview.viewmodel;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.arch.core.util.Function;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 
 import java.util.List;
 
@@ -17,24 +20,36 @@ public class EventViewModel extends AndroidViewModel {
 
     private EventRepoI repository;
     private LiveData<List<Event>> events;
+    private LiveData<List<Event>> eventsByUser;
+    private MutableLiveData<List<Event>> filteredEvents;
+    private final MutableLiveData<String> userId = new MutableLiveData<>();
+
 
     public EventViewModel(@NonNull Application application) {
         super(application);
         repository = new EventRepoImpl(application);
-        events = repository.getEvents();
+        events  = Transformations.switchMap(userId, new Function<String, LiveData<List<Event>>>() {
+                    @Override
+                    public LiveData<List<Event>> apply(String id) {
+                        if (id == null || id.equals("")) {
+                            events = repository.getEvents();
+                        }else{
+                            events = repository.getEvents(Integer.parseInt(id));
+                        }
+                        return events;
+                    }
+                });
     }
 
-    public void getEvents(int userId) {
-        this.events = this.repository.getEvents(userId);
+
+    public LiveData<List<Event>> getEvents(){
+        return events;
     }
 
-    public void getAllEvents() {
-        this.events = this.repository.getEvents();
+    public void setUserId(String id) {
+        userId.setValue(id);
     }
 
-    public LiveData<List<Event>> getEvents() {
-        return this.events;
-    }
 
     public void insert(Event e){
         this.repository.insert(e);

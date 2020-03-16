@@ -1,11 +1,10 @@
 package cat.udl.tidic.amd.dam_recyclerview;
 
-import android.app.Activity;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -14,16 +13,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import cat.udl.tidic.amd.dam_recyclerview.models.Event;
-import cat.udl.tidic.amd.dam_recyclerview.repositories.EventRepoI;
-
-public class EventAdapter  extends ListAdapter<Event, EventAdapter.EventHolder> {
 
 
+public class EventAdapter  extends ListAdapter<Event, EventAdapter.EventHolder>  {
+
+    private List<Event> filteredList;
+    private List<Event> fullList;
     private OnItemClickListener eventItemListener;
 
 

@@ -1,6 +1,7 @@
 package cat.udl.tidic.amd.dam_recyclerview.dao;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -28,5 +29,8 @@ public interface EventDAOI {
 
     @Query("SELECT * FROM event_table")
     LiveData<List<Event>> getAllEvents();
+
+    @Query("SELECT * FROM event_table WHERE userId == :userId")
+    LiveData<List<Event>> getAllEvents(int userId);
 
 }

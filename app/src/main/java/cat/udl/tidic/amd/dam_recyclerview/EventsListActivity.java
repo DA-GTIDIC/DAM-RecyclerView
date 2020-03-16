@@ -5,7 +5,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,8 +16,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -80,6 +77,7 @@ public class EventsListActivity extends AppCompatActivity implements LifecycleOw
         });
 
         viewModel = new EventViewModel(this.getApplication());
+        viewModel.setUserId("");
         viewModel.getEvents().observe(this, new Observer<List<Event>>() {
             @Override
             public void onChanged(@Nullable List<Event> events) {
@@ -97,13 +95,7 @@ public class EventsListActivity extends AppCompatActivity implements LifecycleOw
             @Override
             public void onClick(View v) {
                 TextView textView = findViewById(R.id.activityMainAtcEventUserId);
-
-                try {
-                    int userId = Integer.parseInt(textView.getText().toString());
-                    viewModel.getEvents(userId);
-                }catch(Exception e){
-                    viewModel.getAllEvents();
-                }
+                viewModel.setUserId(textView.getText().toString());
             }
         });
 

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
@@ -46,13 +47,13 @@ public class EventRepoImpl implements EventRepoI {
 
     @Override
     public LiveData<List<Event>> getEvents(int userId) {
-
+        allEvents = eventDAO.getAllEvents(userId);
         return allEvents;
     }
 
     @Override
     public LiveData<List<Event>> getEvents() {
-
+        allEvents = eventDAO.getAllEvents();
         return allEvents;
     }
 

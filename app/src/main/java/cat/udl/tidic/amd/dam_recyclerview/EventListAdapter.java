@@ -16,7 +16,7 @@ import cat.udl.tidic.amd.dam_recyclerview.databinding.ItemEventsListBinding;
 import cat.udl.tidic.amd.dam_recyclerview.models.Event;
 
 
-public final class EventListAdapter extends ListAdapter {
+public final class EventListAdapter extends ListAdapter  {
 
     private AdapterView.OnItemClickListener listener;
 
