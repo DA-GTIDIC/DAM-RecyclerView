@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import cat.udl.tidic.amd.dam_recyclerview.models.Event;
+import cat.udl.tidic.amd.dam_recyclerview.preferences.PreferencesProvider;
 import cat.udl.tidic.amd.dam_recyclerview.viewmodel.EventViewModel;
 
 public class EventsListActivity extends AppCompatActivity implements LifecycleOwner {
@@ -27,6 +29,7 @@ public class EventsListActivity extends AppCompatActivity implements LifecycleOw
     public static final int INSERT_EVENT = 1;
     public static final int EDIT_EVENT = 2;
     public static final String TAG = "EventListActivity";
+    private SharedPreferences mPreferences;
 
 
     private EventViewModel viewModel;
@@ -39,6 +42,7 @@ public class EventsListActivity extends AppCompatActivity implements LifecycleOw
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events_list);
+        this.mPreferences = PreferencesProvider.providePreferences();
         initViews();
     }
 
@@ -131,8 +135,8 @@ public class EventsListActivity extends AppCompatActivity implements LifecycleOw
             String end = data.getStringExtra(AddEditEventActivity.EXTRA_END);
             float avaluation = data.getIntExtra(AddEditEventActivity.EXTRA_AVALUATION, 1);
 
-
-            Event event = new Event(1,start,end,title,description,avaluation);
+            String current_user = this.mPreferences.getString("current_user", "");
+            Event event = new Event(Integer.parseInt(current_user),start,end,title,description,avaluation);
             viewModel.insert(event);
 
             Toast.makeText(this, "Event saved", Toast.LENGTH_SHORT).show();
@@ -150,7 +154,10 @@ public class EventsListActivity extends AppCompatActivity implements LifecycleOw
             String end = data.getStringExtra(AddEditEventActivity.EXTRA_END);
             float avaluation = data.getFloatExtra(AddEditEventActivity.EXTRA_AVALUATION, 1);
 
-            Event event = new Event(1,start,end,title,description,avaluation);
+
+            String current_user = this.mPreferences.getString("current_user", "");
+            Event event = new Event(Integer.parseInt(current_user),start,end,title,description,avaluation);
+
             event.setId(id);
             viewModel.update(event);
 
