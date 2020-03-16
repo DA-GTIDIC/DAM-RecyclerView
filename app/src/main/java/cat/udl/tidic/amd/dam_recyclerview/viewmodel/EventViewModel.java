@@ -20,8 +20,6 @@ public class EventViewModel extends AndroidViewModel {
 
     private EventRepoI repository;
     private LiveData<List<Event>> events;
-    private LiveData<List<Event>> eventsByUser;
-    private MutableLiveData<List<Event>> filteredEvents;
     private final MutableLiveData<String> userId = new MutableLiveData<>();
 
 

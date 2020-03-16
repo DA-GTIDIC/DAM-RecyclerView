@@ -68,7 +68,7 @@ public class EventsListActivity extends AppCompatActivity implements LifecycleOw
         adapter.setOnItemClickListener(new EventAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Event event) {
-                Log.d("Main", event.getTittle());
+                Log.d(TAG, event.getTittle());
                 Intent intent = new Intent(EventsListActivity.this, AddEditEventActivity.class);
                 intent.putExtra(AddEditEventActivity.EXTRA_ID, event.getId());
                 intent.putExtra(AddEditEventActivity.EXTRA_TITLE, event.getTittle());
@@ -161,41 +161,11 @@ public class EventsListActivity extends AppCompatActivity implements LifecycleOw
             event.setId(id);
             viewModel.update(event);
 
-            Toast.makeText(this, "Note updated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Event updated", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Event not saved", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
-
-
-//        EventsListActivity context;
-//        EventViewModel viewModel;
-//        RecyclerView recyclerView;
-//        EventAdapter recyclerViewAdapter;
-//
-//
-//        @Override
-//        protected void onCreate(Bundle savedInstanceState) {
-//            super.onCreate(savedInstanceState);
-//            setContentView(R.layout.activity_events_list);
-//            context = this;
-//            recyclerView = findViewById(R.id.activityMainRcyMain);
-//            viewModel = new EventViewModel(this.getApplication());
-//            viewModel.getEvents().observe(this, new Observer<List<Event>>() {
-//                @Override
-//                public void onChanged(@Nullable List<Event> event) {
-//                    recyclerViewAdapter.submitList(event);
-//                }
-//            });
-//
-//        }
-
-
-
-
 
     }
 

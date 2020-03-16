@@ -5,19 +5,24 @@ import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
 
 @Entity(tableName = "event_table")
 public class Event {
 
     @PrimaryKey(autoGenerate = true)
+    @SerializedName("id")
     private int id;
-
+    @SerializedName("userId")
     private int userId;
+    @SerializedName("start")
     private String start;
+    @SerializedName("end")
     private String end;
+    @SerializedName("tittle")
     private String tittle;
+    @SerializedName("description")
     private String description;
+    @SerializedName("avaluation")
     private float avaluation;
 
 
@@ -35,9 +40,6 @@ public class Event {
         return userId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public int getId() {
         return id;
@@ -47,9 +49,6 @@ public class Event {
         return start;
     }
 
-    public void setStart(String start) {
-        this.start = start;
-    }
 
     public String getEnd() {
         return end;
@@ -59,33 +58,22 @@ public class Event {
         this.id = id;
     }
 
-    public void setEnd(String end) {
-        this.end = end;
-    }
 
     public String getTittle() {
         return tittle;
     }
 
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
-    }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public float getAvaluation() {
         return avaluation;
     }
 
-    public void setAvaluation(int avaluation) {
-        this.avaluation = avaluation;
-    }
+
 
     @Override
     public boolean equals(Object o) {

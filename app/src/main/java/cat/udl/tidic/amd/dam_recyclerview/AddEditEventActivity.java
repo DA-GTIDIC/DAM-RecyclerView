@@ -30,6 +30,7 @@ public class AddEditEventActivity extends AppCompatActivity {
     public static final String EXTRA_END =
             "cat.udl.tidic.amd.dam_recyclerview.EXTRA_END";
 
+    private final static String TAG = "AddEditForm";
 
     private EditText editTextTitle;
     private EditText editTextEnd;
@@ -83,7 +84,7 @@ public class AddEditEventActivity extends AppCompatActivity {
         String end = editTextEnd.getText().toString();
         float avaluation = ratingBarAvaluation.getRating();
 
-        Log.d("Form", "" +avaluation);
+        Log.d(TAG, "" +avaluation);
 
         if (title.trim().isEmpty() || description.trim().isEmpty()) {
             Toast.makeText(this,

@@ -10,9 +10,6 @@ public interface EventRepoI {
    // Create a new event
    void insert(Event event);
 
-   // Read an event by id
-   Event get(int eventId);
-
    // Update an existing event
    void update (Event event);
 

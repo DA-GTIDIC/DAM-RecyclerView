@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -13,16 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.List;
 
 import cat.udl.tidic.amd.dam_recyclerview.models.Event;
 
 
 public class EventAdapter  extends ListAdapter<Event, EventAdapter.EventHolder>  {
 
-    private List<Event> filteredList;
-    private List<Event> fullList;
     private OnItemClickListener eventItemListener;
+    private final static String TAG = "EventAdapter";
 
 
     protected EventAdapter(@NonNull DiffUtil.ItemCallback<Event> diffCallback) {
@@ -49,8 +46,8 @@ public class EventAdapter  extends ListAdapter<Event, EventAdapter.EventHolder> 
 
 
     public Event getEventAt(int position) {
-        Log.d("EventAdapter", "Position: "+ position);
-        Log.d("EventAdapter", "Event: "+ getItem(position).getTittle());
+        Log.d(TAG, "Position: "+ position);
+        Log.d(TAG, "Event: "+ getItem(position).getTittle());
         return getItem(position);
     }
 
@@ -59,7 +56,6 @@ public class EventAdapter  extends ListAdapter<Event, EventAdapter.EventHolder> 
     class EventHolder extends RecyclerView.ViewHolder {
         private TextView textViewTitle;
         private TextView textViewDescription;
-        private ImageButton imageButtonRemove;
         private RatingBar ratingAvaluation;
 
         public EventHolder(View itemView) {

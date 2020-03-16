@@ -4,8 +4,6 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
 import java.util.List;
 
 import cat.udl.tidic.amd.dam_recyclerview.dao.EventDAOI;
@@ -27,17 +25,13 @@ public class EventRepoImpl implements EventRepoI {
 
     @Override
     public void insert(Event event) {
-        new InsertNoteAsyncTask(eventDAO).execute(event);
+        new InsertEventAsyncTask(eventDAO).execute(event);
     }
 
-    @Override
-    public Event get(int eventId) {
-        return null;
-    }
 
     @Override
     public void update(Event event) {
-        new UpdateNoteAsyncTask(eventDAO).execute(event);
+        new UpdateEventAsyncTask(eventDAO).execute(event);
     }
 
     @Override
@@ -77,10 +71,10 @@ public class EventRepoImpl implements EventRepoI {
         }
     }
 
-    private static class UpdateNoteAsyncTask extends AsyncTask<Event, Void, Void> {
+    private static class UpdateEventAsyncTask extends AsyncTask<Event, Void, Void> {
         private EventDAOI eventDAO;
 
-        private UpdateNoteAsyncTask(EventDAOI eventDAO) {
+        private UpdateEventAsyncTask(EventDAOI eventDAO) {
             this.eventDAO = eventDAO;
         }
 
@@ -91,10 +85,10 @@ public class EventRepoImpl implements EventRepoI {
         }
     }
 
-    private static class InsertNoteAsyncTask extends AsyncTask<Event, Void, Void> {
+    private static class InsertEventAsyncTask extends AsyncTask<Event, Void, Void> {
         private EventDAOI eventDAO;
 
-        private InsertNoteAsyncTask(EventDAOI eventDAO) {
+        private InsertEventAsyncTask(EventDAOI eventDAO) {
             this.eventDAO = eventDAO;
         }
 
