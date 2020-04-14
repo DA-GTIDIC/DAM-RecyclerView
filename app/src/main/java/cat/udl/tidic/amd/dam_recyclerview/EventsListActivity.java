@@ -18,6 +18,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import cat.udl.tidic.amd.dam_recyclerview.models.Event;
@@ -127,16 +130,20 @@ public class EventsListActivity extends AppCompatActivity implements LifecycleOw
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
         if (requestCode == INSERT_EVENT && resultCode == RESULT_OK) {
             String title = data.getStringExtra(AddEditEventActivity.EXTRA_TITLE);
             String description = data.getStringExtra(AddEditEventActivity.EXTRA_DESCRIPTION);
-            String start = data.getStringExtra(AddEditEventActivity.EXTRA_START);
-            String end = data.getStringExtra(AddEditEventActivity.EXTRA_END);
+            Date dateStart = (Date)data.getSerializableExtra(AddEditEventActivity.EXTRA_START);
+            //String start = formatter.format(dateStart);
+            Date dateEnd = (Date)data.getSerializableExtra(AddEditEventActivity.EXTRA_END);
+            //String end = formatter.format(dateEnd);
+            //String end = data.getStringExtra(AddEditEventActivity.EXTRA_END);
             float avaluation = data.getIntExtra(AddEditEventActivity.EXTRA_AVALUATION, 1);
 
             String current_user = this.mPreferences.getString("current_user", "");
-            Event event = new Event(Integer.parseInt(current_user),start,end,title,description,avaluation);
+            Event event = new Event(Integer.parseInt(current_user),dateStart,dateEnd,title,description,avaluation);
             viewModel.insert(event);
 
             Toast.makeText(this, "Event saved", Toast.LENGTH_SHORT).show();
@@ -150,13 +157,15 @@ public class EventsListActivity extends AppCompatActivity implements LifecycleOw
 
             String title = data.getStringExtra(AddEditEventActivity.EXTRA_TITLE);
             String description = data.getStringExtra(AddEditEventActivity.EXTRA_DESCRIPTION);
-            String start = data.getStringExtra(AddEditEventActivity.EXTRA_START);
-            String end = data.getStringExtra(AddEditEventActivity.EXTRA_END);
+            Date dateStart = (Date)data.getSerializableExtra(AddEditEventActivity.EXTRA_START);
+            Date dateEnd = (Date)data.getSerializableExtra(AddEditEventActivity.EXTRA_END);
+            //String start = data.getStringExtra(AddEditEventActivity.EXTRA_START);
+            //String end = data.getStringExtra(AddEditEventActivity.EXTRA_END);
             float avaluation = data.getFloatExtra(AddEditEventActivity.EXTRA_AVALUATION, 1);
 
 
             String current_user = this.mPreferences.getString("current_user", "");
-            Event event = new Event(Integer.parseInt(current_user),start,end,title,description,avaluation);
+            Event event = new Event(Integer.parseInt(current_user),dateStart,dateEnd,title,description,avaluation);
 
             event.setId(id);
             viewModel.update(event);

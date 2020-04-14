@@ -13,6 +13,11 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class AddEditEventActivity extends AppCompatActivity {
 
     public static final String EXTRA_ID =
@@ -56,10 +61,15 @@ public class AddEditEventActivity extends AppCompatActivity {
 
         if (intent.hasExtra(EXTRA_ID)) {
             setTitle("Edit Event");
+            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             editTextTitle.setText(intent.getStringExtra(EXTRA_TITLE));
             editTextDescription.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
-            editTextStart.setText(intent.getStringExtra(EXTRA_START));
-            editTextEnd.setText(intent.getStringExtra(EXTRA_END));
+            Date dateStart =  (Date)intent.getSerializableExtra(EXTRA_START);
+
+            editTextStart.setText( formatter.format(dateStart));
+
+            Date dateEnd =  (Date)intent.getSerializableExtra(EXTRA_END);
+            editTextEnd.setText(formatter.format(dateEnd));
             ratingBarAvaluation.setRating(intent.getFloatExtra(EXTRA_AVALUATION,1));
 
         } else {
@@ -78,10 +88,28 @@ public class AddEditEventActivity extends AppCompatActivity {
 
 
     private void saveEvent() {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String title = editTextTitle.getText().toString();
         String description = editTextDescription.getText().toString();
         String start = editTextStart.getText().toString();
+        Date dataStart = null;
+        Date dataEnd = null;
+
+        try {
+            dataStart = df.parse(start);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            Toast.makeText(this,
+                    "Error en el formato de la fecha inicial", Toast.LENGTH_SHORT).show();
+        }
         String end = editTextEnd.getText().toString();
+        try {
+            dataEnd = df.parse(end);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            Toast.makeText(this,
+                    "Error en la fecha final", Toast.LENGTH_SHORT).show();
+        }
         float avaluation = ratingBarAvaluation.getRating();
 
         Log.d(TAG, "" +avaluation);
@@ -95,8 +123,8 @@ public class AddEditEventActivity extends AppCompatActivity {
         Intent data = new Intent();
         data.putExtra(EXTRA_TITLE, title);
         data.putExtra(EXTRA_DESCRIPTION, description);
-        data.putExtra(EXTRA_START, start);
-        data.putExtra(EXTRA_END, end);
+        data.putExtra(EXTRA_START, dataStart);
+        data.putExtra(EXTRA_END, dataEnd);
         data.putExtra(EXTRA_AVALUATION, avaluation);
 
         int id = getIntent().getIntExtra(EXTRA_ID, -1);

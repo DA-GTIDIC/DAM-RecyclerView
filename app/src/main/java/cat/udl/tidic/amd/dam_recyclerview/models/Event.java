@@ -2,11 +2,17 @@ package cat.udl.tidic.amd.dam_recyclerview.models;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
+import cat.udl.tidic.amd.dam_recyclerview.database.DateConverter;
+
 
 @Entity(tableName = "event_table")
+@TypeConverters(DateConverter.class)
 public class Event {
 
     @PrimaryKey(autoGenerate = true)
@@ -15,9 +21,9 @@ public class Event {
     @SerializedName("userId")
     private int userId;
     @SerializedName("start")
-    private String start;
+    private Date start;
     @SerializedName("end")
-    private String end;
+    private Date end;
     @SerializedName("tittle")
     private String tittle;
     @SerializedName("description")
@@ -26,7 +32,7 @@ public class Event {
     private float avaluation;
 
 
-    public Event(int userId, String start, String end, String tittle, String description,
+    public Event(int userId, Date start, Date end, String tittle, String description,
     float avaluation) {
         this.userId = userId;
         this.start = start;
@@ -45,12 +51,12 @@ public class Event {
         return id;
     }
 
-    public String getStart() {
+    public Date getStart() {
         return start;
     }
 
 
-    public String getEnd() {
+    public Date getEnd() {
         return end;
     }
 
